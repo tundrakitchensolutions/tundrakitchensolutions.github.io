@@ -1,97 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tundra Kitchen Solutions</title>
-  <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* Extra glam for the home page */
-    body {
-      background: linear-gradient(135deg, #004080, #00aaff);
-      color: white;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    header {
-      padding: 2rem 1rem;
-      text-align: center;
-      background: rgba(0,0,0,0.3);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      margin-bottom: 2rem;
-    }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.25rem;
-      letter-spacing: 2px;
-    }
-    header p {
-      font-size: 1.2rem;
-      font-weight: 300;
-      margin-top: 0;
-    }
-    nav {
-      margin-top: 1rem;
-    }
-    nav a {
-      color: #cce7ff;
-      margin: 0 1rem;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: color 0.3s ease;
-    }
-    nav a:hover {
-      color: #ffe600;
-      text-shadow: 0 0 5px #ffe600;
-    }
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      background: rgba(255 255 255 / 0.85);
-      color: #222;
-      padding: 2rem 3rem;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-    main h2 {
-      color: #004080;
-      margin-bottom: 1rem;
-    }
-    main p {
-      line-height: 1.5;
-      font-size: 1.1rem;
-    }
-    footer {
-      margin-top: 3rem;
-      padding: 1rem;
-      text-align: center;
-      font-size: 0.9rem;
-      color: #ddd;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tundra Kitchen Solutions</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header>
-    <h1>Tundra Kitchen Solutions</h1>
-    <p>Your mobile kitchen for remote camp cooking needs</p>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="availability.html">Availability</a> |
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
+<body class="bg-gray-100 text-gray-800">
 
-  <main>
-    <section>
-      <h2>Welcome to Tundra Kitchen Solutions</h2>
-      <p>We provide a fully equipped commercial kitchen trailer designed for remote camp catering and outdoor events. Our kitchen is ready to meet the demands of your project, big or small.</p>
-      <p>Explore our <a href="availability.html">availability</a> to find open booking dates or <a href="contact.html">contact us</a> to discuss your needs and reserve your slot.</p>
+    <!-- Header & Navigation -->
+    <header class="bg-white card-shadow sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">
+                Tundra Kitchen Solutions
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
+                <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
+                <a href="availability.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Reserve</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gray-900 text-white min-h-screen flex items-center justify-center">
+        <!-- Replaced placeholder with an actual image, fallback to a placeholder if it fails -->
+        <img class="absolute inset-0 w-full h-full object-cover opacity-50" src="http://googleusercontent.com/file_content/4" alt="Exterior of the green mobile kitchen trailer" onerror="this.src='https://placehold.co/1920x1080/0d47a1/ffffff?text=Mobile+Kitchen+Trailer';">
+        <div class="relative container mx-auto px-6 py-24 text-center">
+            <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 text-shadow">
+                MOBILE KITCHEN TRAILER<br>BUILT FOR ALASKAN WORK SITES
+            </h1>
+            <p class="text-lg md:text-2xl mb-8 max-w-2xl mx-auto text-shadow">
+                Designed for construction crews, field operations, and remote work camps.
+            </p>
+            <a href="contact.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105">
+                Request a Quote
+            </a>
+        </div>
     </section>
-  </main>
 
-  <footer>
-    <p>Contact us at <a href="mailto:info@tundrakitchensolutions.com" style="color:#ffe600;">info@tundrakitchensolutions.com</a></p>
-    <p>© 2025 Tundra Kitchen Solutions</p>
-  </footer>
+    <!-- Key Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8">Key Features</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-8 rounded-lg card-shadow transition-transform duration-300 hover:scale-105">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold mb-2">DEC-Compliant Kitchen</h3>
+                    <p class="text-gray-600">
+                        A full commercial kitchen designed with input from experienced camp cooks, meeting all DEC and Fire Marshal requirements.
+                    </p>
+                </div>
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-8 rounded-lg card-shadow transition-transform duration-300 hover:scale-105">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h-1a1 1 0 01-1-1v-4a1 1 0 011-1h1a1 1 0 011 1v4a1 1 0 01-1 1zM7 20h1a1 1 0 001-1v-4a1 1 0 00-1-1H7a1 1 0 00-1 1v4a1 1 0 001 1zM7 10h1a1 1 0 001-1V5a1 1 0 00-1-1H7a1 1 0 00-1 1v4a1 1 0 001 1zm10 0h1a1 1 0 001-1V5a1 1 0 00-1-1h-1a1 1 0 00-1 1v4a1 1 0 001 1z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold mb-2">Buffet-Style Service</h3>
+                    <p class="text-gray-600">
+                        Capacity for 25+ workers with catering-style hot food storage to accommodate multiple shift schedules.
+                    </p>
+                </div>
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-8 rounded-lg card-shadow transition-transform duration-300 hover:scale-105">
+                    <svg class="w-16 h-16 mx-auto mb-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c1.657 0 3-4.5 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.5-3-9s1.343-9 3-9m-9 9a9 9 0 0118 0z"></path>
+                    </svg>
+                    <h3 class="text-2xl font-semibold mb-2">Time and Water Savings</h3>
+                    <p class="text-gray-600">
+                        A commercial dishwasher reduces water use and expensive waste while saving valuable time for your crew.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why it Works in Alaska Section -->
+    <section id="why-it-works" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8">Why This Unit Works in Alaska</h2>
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <!-- Replaced placeholder with the exterior photo -->
+                    <img class="rounded-lg card-shadow w-full h-auto" src="http://googleusercontent.com/file_content/4" alt="Exterior of the green mobile kitchen trailer with an awning and picnic table">
+                </div>
+                <div class="md:w-1/2 text-left">
+                    <ul class="text-lg text-gray-600 space-y-4">
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <span>Engineered for Alaskan projects with three- and four-season use in mind.</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <span>Provides reliable hot meals on-site, boosting crew morale and productivity.</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <span>Cuts logistical challenges for field operations by bringing the kitchen directly to the worksite.</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            <span>Flexible rental options: rent the kitchen only or ask about full food service partnerships.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8">Interior Gallery</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Interior Photo 1: Stove and Hood -->
+                <div class="rounded-lg card-shadow overflow-hidden">
+                    <img src="http://googleusercontent.com/file_content/2" alt="Interior view of the kitchen showing the commercial grade stove and exhaust hood" class="w-full h-full object-cover">
+                </div>
+                <!-- Interior Photo 2: Triple Sink and Dishwasher -->
+                <div class="rounded-lg card-shadow overflow-hidden">
+                    <img src="http://googleusercontent.com/file_content/3" alt="Interior view of the kitchen with triple sink, commercial dishwasher, and refrigerator units" class="w-full h-full object-cover">
+                </div>
+                <!-- Interior Photo 3: Full Interior Shot -->
+                <div class="rounded-lg card-shadow overflow-hidden">
+                    <img src="http://googleusercontent.com/file_content/1" alt="Full interior view of the mobile kitchen, showing all commercial equipment" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            &copy; 2025 Tundra Kitchen Solutions, LLC. All rights reserved.
+        </div>
+    </footer>
 </body>
 </html>
