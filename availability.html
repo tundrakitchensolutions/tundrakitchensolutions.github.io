@@ -8,20 +8,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Link to the external stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for the calendar icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
 
     <!-- Header & Navigation -->
     <header class="bg-white card-shadow sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-900">
+            <!-- Removed the href to make it not a link -->
+            <div class="text-2xl font-bold text-gray-900">
                 Tundra Kitchen Solutions
-            </a>
+            </div>
             <div class="hidden md:flex space-x-6">
                 <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
                 <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
-                <a href="availability.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Reserve</a>
-                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
             </div>
             <!-- Mobile Menu Button -->
             <button class="md:hidden text-gray-600 focus:outline-none">
@@ -33,7 +34,7 @@
     </header>
     
     <!-- Reservation Section -->
-    <section id="reservation" class="py-20 bg-white">
+    <section id="reservation" class="py-20 bg-white min-h-screen">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-4xl font-bold mb-8">Book a Reservation</h2>
             <div class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg card-shadow">
@@ -71,6 +72,10 @@
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-6 text-center text-sm">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="availability.html" class="text-gray-400 hover:text-white transition-colors duration-300">Availability</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+            </div>
             &copy; 2025 Tundra Kitchen Solutions, LLC. All rights reserved.
         </div>
     </footer>
