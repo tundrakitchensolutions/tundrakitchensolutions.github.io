@@ -8,20 +8,21 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Link to the external stylesheet -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for the calendar icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 text-gray-800">
 
     <!-- Header & Navigation -->
     <header class="bg-white card-shadow sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="index.html" class="text-2xl font-bold text-gray-900">
+            <!-- Removed the href to make it not a link -->
+            <div class="text-2xl font-bold text-gray-900">
                 Tundra Kitchen Solutions
-            </a>
+            </div>
             <div class="hidden md:flex space-x-6">
-                <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
-                <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
-                <a href="availability.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Reserve</a>
-                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
+                <a href="#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
+                <a href="#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
             </div>
             <!-- Mobile Menu Button -->
             <button class="md:hidden text-gray-600 focus:outline-none">
@@ -34,7 +35,7 @@
 
     <!-- Hero Section -->
     <section class="relative bg-gray-900 text-white min-h-screen flex items-center justify-center">
-        <!-- Replaced placeholder with an actual image, fallback to a placeholder if it fails -->
+        <!-- Image from the uploaded files is now used here -->
         <img class="absolute inset-0 w-full h-full object-cover opacity-50" src="http://googleusercontent.com/file_content/4" alt="Exterior of the green mobile kitchen trailer" onerror="this.src='https://placehold.co/1920x1080/0d47a1/ffffff?text=Mobile+Kitchen+Trailer';">
         <div class="relative container mx-auto px-6 py-24 text-center">
             <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-4 text-shadow">
@@ -94,24 +95,25 @@
             <h2 class="text-4xl font-bold mb-8">Why This Unit Works in Alaska</h2>
             <div class="flex flex-col md:flex-row items-center gap-12">
                 <div class="md:w-1/2">
-                    <!-- Replaced placeholder with the exterior photo -->
+                    <!-- Image from the uploaded files is now used here -->
                     <img class="rounded-lg card-shadow w-full h-auto" src="http://googleusercontent.com/file_content/4" alt="Exterior of the green mobile kitchen trailer with an awning and picnic table">
                 </div>
-                <div class="md:w-1/2 text-left">
-                    <ul class="text-lg text-gray-600 space-y-4">
-                        <li class="flex items-center space-x-2">
+                <!-- The text is now centered as you requested -->
+                <div class="md:w-1/2 text-center">
+                    <ul class="text-lg text-gray-600 space-y-4 text-left inline-block">
+                        <li class="flex items-start space-x-2">
                             <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             <span>Engineered for Alaskan projects with three- and four-season use in mind.</span>
                         </li>
-                        <li class="flex items-center space-x-2">
+                        <li class="flex items-start space-x-2">
                             <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             <span>Provides reliable hot meals on-site, boosting crew morale and productivity.</span>
                         </li>
-                        <li class="flex items-center space-x-2">
+                        <li class="flex items-start space-x-2">
                             <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             <span>Cuts logistical challenges for field operations by bringing the kitchen directly to the worksite.</span>
                         </li>
-                        <li class="flex items-center space-x-2">
+                        <li class="flex items-start space-x-2">
                             <svg class="w-6 h-6 text-blue-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
                             <span>Flexible rental options: rent the kitchen only or ask about full food service partnerships.</span>
                         </li>
@@ -126,15 +128,15 @@
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-4xl font-bold mb-8">Interior Gallery</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Interior Photo 1: Stove and Hood -->
+                <!-- Image from the uploaded files is now used here -->
                 <div class="rounded-lg card-shadow overflow-hidden">
                     <img src="http://googleusercontent.com/file_content/2" alt="Interior view of the kitchen showing the commercial grade stove and exhaust hood" class="w-full h-full object-cover">
                 </div>
-                <!-- Interior Photo 2: Triple Sink and Dishwasher -->
+                <!-- Image from the uploaded files is now used here -->
                 <div class="rounded-lg card-shadow overflow-hidden">
                     <img src="http://googleusercontent.com/file_content/3" alt="Interior view of the kitchen with triple sink, commercial dishwasher, and refrigerator units" class="w-full h-full object-cover">
                 </div>
-                <!-- Interior Photo 3: Full Interior Shot -->
+                <!-- Image from the uploaded files is now used here -->
                 <div class="rounded-lg card-shadow overflow-hidden">
                     <img src="http://googleusercontent.com/file_content/1" alt="Full interior view of the mobile kitchen, showing all commercial equipment" class="w-full h-full object-cover">
                 </div>
@@ -142,9 +144,22 @@
         </div>
     </section>
 
+    <!-- Calendar Button Section -->
+    <section id="availability-button" class="py-20 bg-gray-50 text-center">
+        <h2 class="text-4xl font-bold mb-4">Check Availability</h2>
+        <a href="availability.html" class="inline-flex items-center bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105">
+            <i class="fas fa-calendar-alt mr-3"></i>
+            Reserve a Date
+        </a>
+    </section>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-6 text-center text-sm">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="availability.html" class="text-gray-400 hover:text-white transition-colors duration-300">Availability</a>
+                <a href="contact.html" class="text-gray-400 hover:text-white transition-colors duration-300">Contact</a>
+            </div>
             &copy; 2025 Tundra Kitchen Solutions, LLC. All rights reserved.
         </div>
     </footer>
