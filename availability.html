@@ -1,29 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Availability - Tundra Kitchen Solutions</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tundra Kitchen Solutions - Availability</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to the external stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <header>
-    <h1>Availability</h1>
-    <nav>
-      <a href="index.html">Home</a> |
-      <a href="availability.html">Availability</a> |
-      <a href="contact.html">Contact</a>
-    </nav>
-  </header>
-  <main>
-    <section>
-      <h2>Booking Calendar</h2>
-      <p>Our kitchen trailer is available most weeks. Please contact us for current availability.</p>
-      <!-- Placeholder for calendar or booking system -->
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white card-shadow sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-gray-900">
+                Tundra Kitchen Solutions
+            </a>
+            <div class="hidden md:flex space-x-6">
+                <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
+                <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
+                <a href="availability.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Reserve</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+    </header>
+    
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-8">Book a Reservation</h2>
+            <div class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg card-shadow">
+                <div class="flex justify-between items-center mb-6">
+                    <button id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <h3 id="monthYear" class="text-2xl font-semibold"></h3>
+                    <button id="nextBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                </div>
+                <div class="grid grid-cols-7 gap-2 text-sm font-bold text-gray-500 mb-2">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+                <div id="calendar" class="grid grid-cols-7 gap-2 text-center text-lg">
+                    <!-- Calendar days will be generated here by JavaScript -->
+                </div>
+                <button id="bookBtn" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400" disabled>
+                    Book Selected Date
+                </button>
+            </div>
+            <div id="confirmationMessage" class="mt-4 p-4 rounded-lg bg-green-100 text-green-800 hidden">
+                <!-- Confirmation message will appear here -->
+            </div>
+        </div>
     </section>
-  </main>
-  <footer>
-    <p>Contact: info@tundrakitchensolutions.com</p>
-  </footer>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-6 text-center text-sm">
+            &copy; 2025 Tundra Kitchen Solutions, LLC. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const calendarEl = document.getElementById('calendar');
+            const monthYearEl = document.getElementById('monthYear');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const bookBtn = document.getElementById('bookBtn');
+            const confirmationMessageEl = document.getElementById('confirmationMessage');
+
+            let selectedDate = null;
+            let currentDate = new Date();
+
+            const renderCalendar = () => {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
+
+                // Set month and year title
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                monthYearEl.textContent = `${monthNames[month]} ${year}`;
+
+                // Clear previous calendar
+                calendarEl.innerHTML = '';
+
+                // Get first and last day of the month
+                const firstDay = new Date(year, month, 1).getDay();
+                const lastDay = new Date(year, month + 1, 0).getDate();
+
+                // Add empty days for alignment
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDiv = document.createElement('div');
+                    calendarEl.appendChild(emptyDiv);
+                }
+
+                // Add days of the month
+                for (let i = 1; i <= lastDay; i++) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.textContent = i;
+                    dayDiv.classList.add('p-2', 'rounded-full', 'calendar-day');
+
+                    // Check if it's the selected date and add a class
+                    if (selectedDate && i === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear()) {
+                        dayDiv.classList.add('selected');
+                    }
+
+                    // Add click event listener to each day
+                    dayDiv.addEventListener('click', () => {
+                        // Remove selected class from previously selected day
+                        if (selectedDate) {
+                            const previousSelected = calendarEl.querySelector('.selected');
+                            if (previousSelected) {
+                                previousSelected.classList.remove('selected');
+                            }
+                        }
+
+                        // Add selected class to the new day
+                        dayDiv.classList.add('selected');
+                        selectedDate = new Date(year, month, i);
+                        bookBtn.disabled = false;
+                        confirmationMessageEl.classList.add('hidden'); // Hide any previous confirmation message
+                    });
+
+                    calendarEl.appendChild(dayDiv);
+                }
+            };
+
+            // Event listeners for navigation
+            prevBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+
+            // Event listener for the book button
+            bookBtn.addEventListener('click', () => {
+                if (selectedDate) {
+                    const formattedDate = selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+                    confirmationMessageEl.textContent = `Thank you! Your request for ${formattedDate} has been sent. We'll be in touch shortly.`;
+                    confirmationMessageEl.classList.remove('hidden');
+                    bookBtn.disabled = true; // Disable the button after booking
+                }
+            });
+
+            // Initial render
+            renderCalendar();
+        });
+    </script>
 </body>
 </html>
