@@ -1,175 +1,29 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2575.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-  </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Availability - Tundra Kitchen Solutions</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Availability - Tundra Kitchen Solutions&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="styles.css" /&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul class="nav-list"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="index.html"&gt;Home&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="availability.html" class="active"&gt;Availability&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;&lt;a href="contact.html"&gt;Contact&lt;/a&gt;&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/nav&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;main&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;section class="calendar-section"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;h1&gt;Check Availability &amp; Book&lt;/h1&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Select a date below to request a booking.&lt;/p&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="calendar"&gt;&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div id="booking-form-container" class="hidden"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;h2&gt;Booking Request&lt;/h2&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;form id="booking-form" action="https://formspree.io/f/your-form-id" method="POST"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="date"&gt;Selected Date:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="text" id="date" name="date" readonly required /&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="name"&gt;Your Name:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="text" id="name" name="name" required /&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="email"&gt;Your Email:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;input type="email" id="email" name="_replyto" required /&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;label for="message"&gt;Additional Details:&lt;/label&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;textarea id="message" name="message" rows="4"&gt;&lt;/textarea&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="submit"&gt;Send Booking Request&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>&lt;button type="button" id="cancel-btn"&gt;Cancel&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;/form&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/section&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/main&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;footer&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;p&gt;&amp;copy; 2025 Tundra Kitchen Solutions&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/footer&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const bookedDates = [</p>
-<p class="p1"><span class="Apple-converted-space">      </span>// Add booked dates here in YYYY-MM-DD format, e.g. "2025-08-15"</p>
-<p class="p1"><span class="Apple-converted-space">    </span>];</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>const calendarEl = document.getElementById('calendar');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const bookingFormContainer = document.getElementById('booking-form-container');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const bookingForm = document.getElementById('booking-form');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const dateInput = document.getElementById('date');</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const cancelBtn = document.getElementById('cancel-btn');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function createCalendar(year, month) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>calendarEl.innerHTML = '';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const date = new Date(year, month, 1);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const firstDay = date.getDay();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const daysInMonth = new Date(year, month + 1, 0).getDate();</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const table = document.createElement('table');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>table.className = 'calendar-table';</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// Table header with days of week</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const thead = document.createElement('thead');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const headerRow = document.createElement('tr');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].forEach(day =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const th = document.createElement('th');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>th.textContent = day;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>headerRow.appendChild(th);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>});</p>
-<p class="p1"><span class="Apple-converted-space">      </span>thead.appendChild(headerRow);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>table.appendChild(thead);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>const tbody = document.createElement('tbody');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>let row = document.createElement('tr');</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// Empty cells before first day</p>
-<p class="p1"><span class="Apple-converted-space">      </span>for (let i = 0; i &lt; firstDay; i++) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>row.appendChild(document.createElement('td'));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>for (let dayNum = 1; dayNum &lt;= daysInMonth; dayNum++) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const cell = document.createElement('td');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const dateStr = `${year}-${String(month + 1).padStart(2,'0')}-${String(dayNum).padStart(2,'0')}`;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>const cellDate = new Date(year, month, dayNum);</p>
-<p class="p1"><span class="Apple-converted-space">        </span>const today = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">        </span>today.setHours(0,0,0,0);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>cell.textContent = dayNum;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Disable past dates</p>
-<p class="p1"><span class="Apple-converted-space">        </span>if (cellDate &lt; today) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.classList.add('past-date');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Mark booked dates</p>
-<p class="p1"><span class="Apple-converted-space">        </span>else if (bookedDates.includes(dateStr)) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.classList.add('booked-date');</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.title = 'Booked';</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}<span class="Apple-converted-space"> </span></p>
-<p class="p1"><span class="Apple-converted-space">        </span>// Available dates clickable</p>
-<p class="p1"><span class="Apple-converted-space">        </span>else {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.classList.add('available-date');</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.tabIndex = 0;</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.style.cursor = 'pointer';</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.addEventListener('click', () =&gt; openBookingForm(dateStr));</p>
-<p class="p1"><span class="Apple-converted-space">          </span>cell.addEventListener('keypress', e =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">            </span>if (e.key === 'Enter' || e.key === ' ') {</p>
-<p class="p1"><span class="Apple-converted-space">              </span>openBookingForm(dateStr);</p>
-<p class="p1"><span class="Apple-converted-space">            </span>}</p>
-<p class="p1"><span class="Apple-converted-space">          </span>});</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>row.appendChild(cell);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">        </span>if ((firstDay + dayNum) % 7 === 0) {</p>
-<p class="p1"><span class="Apple-converted-space">          </span>tbody.appendChild(row);</p>
-<p class="p1"><span class="Apple-converted-space">          </span>row = document.createElement('tr');</p>
-<p class="p1"><span class="Apple-converted-space">        </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>// Fill remaining cells in last row</p>
-<p class="p1"><span class="Apple-converted-space">      </span>while (row.children.length &lt; 7) {</p>
-<p class="p1"><span class="Apple-converted-space">        </span>row.appendChild(document.createElement('td'));</p>
-<p class="p1"><span class="Apple-converted-space">      </span>}</p>
-<p class="p1"><span class="Apple-converted-space">      </span>tbody.appendChild(row);</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">      </span>table.appendChild(tbody);</p>
-<p class="p1"><span class="Apple-converted-space">      </span>calendarEl.appendChild(table);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>function openBookingForm(dateStr) {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bookingFormContainer.classList.remove('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>dateInput.value = dateStr;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>window.scrollTo({ top: bookingFormContainer.offsetTop, behavior: 'smooth' });</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>cancelBtn.addEventListener('click', () =&gt; {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bookingFormContainer.classList.add('hidden');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bookingForm.reset();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>});</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Initialize calendar for current month</p>
-<p class="p1"><span class="Apple-converted-space">    </span>const now = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">    </span>createCalendar(now.getFullYear(), now.getMonth());</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <header>
+    <h1>Availability</h1>
+    <nav>
+      <a href="index.html">Home</a> |
+      <a href="availability.html">Availability</a> |
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+  <main>
+    <section>
+      <h2>Booking Calendar</h2>
+      <p>Our kitchen trailer is available most weeks. Please contact us for current availability.</p>
+      <!-- Placeholder for calendar or booking system -->
+    </section>
+  </main>
+  <footer>
+    <p>Contact: info@tundrakitchensolutions.com</p>
+  </footer>
 </body>
 </html>
