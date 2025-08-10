@@ -3,46 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Tundra Kitchen Solutions</title>
+    <title>Tundra Kitchen Solutions - Availability</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome for the calendar icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        .card-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-        .copied-message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 0.5rem 1rem;
-            border-radius: 9999px;
-            background-color: #38a169; /* Green-600 */
-            color: white;
-            font-weight: bold;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-        }
-        .copied-message.show {
-            opacity: 1;
-        }
-    </style>
+    <!-- Google reCAPTCHA v3 script -->
+    <script src="https://www.google.com/recaptcha/api.js?render=6LcjiKArAAAAAHQiHHuECHu185r6QnWN6HGlwxrs"></script>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="bg-gray-100 text-gray-800">
 
     <!-- Header & Navigation -->
     <header class="bg-white card-shadow sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Tundra Kitchen Solutions title, now a blue link to the homepage -->
-            <a href="index.html" class="text-2xl font-bold text-blue-600 hover:text-blue-700 transition-colors duration-300">
+            <!-- Tundra Kitchen Solutions title, now a link to the homepage -->
+            <a href="index.html" class="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300">
                 Tundra Kitchen Solutions
             </a>
             <div class="hidden md:flex space-x-6">
                 <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
                 <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
-                <a href="availability.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Availability</a>
                 <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
             </div>
             <!-- Mobile Menu Button -->
@@ -54,41 +34,80 @@
         </nav>
     </header>
     
-    <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50 min-h-screen">
+    <!-- Reservation Section -->
+    <section id="reservation" class="py-20 bg-gray-50 min-h-screen">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 text-gray-900">Get in Touch</h2>
+            <h2 class="text-4xl font-bold mb-8 text-gray-900">Book a Reservation</h2>
             
-            <div class="bg-white p-8 rounded-xl card-shadow max-w-2xl mx-auto space-y-8">
-                
-                <!-- Obfuscated Email Section -->
-                <div class="flex flex-col items-center">
-                    <h3 class="text-xl font-bold mb-4">Email Us</h3>
-                    <div class="relative flex items-center justify-center p-2 bg-gray-100 rounded-lg shadow-inner">
-                        <!-- Obfuscated email will be inserted here by JavaScript -->
-                        <span id="obfuscated-email" class="text-lg font-mono text-gray-700"></span>
-                        
-                        <!-- Click-to-copy button -->
-                        <button id="copy-email-btn" class="ml-4 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition-colors duration-200">
-                            <i class="fas fa-copy"></i>
-                        </button>
-                        
-                        <!-- Confirmation message -->
-                        <span id="copied-message" class="copied-message">Copied!</span>
+            <div class="bg-white p-8 rounded-xl card-shadow max-w-2xl mx-auto">
+                <form id="reservationForm" action="https://formspree.io/f/xyzplwvd" method="POST" class="space-y-6">
+                    
+                    <!-- Input fields for client information -->
+                    <div>
+                        <label for="clientName" class="block text-left text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="clientName" name="clientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
                     </div>
-                </div>
+                    <div>
+                        <label for="clientEmail" class="block text-left text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="clientEmail" name="clientEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
+                    <!-- New "Company" field -->
+                    <div>
+                        <label for="company" class="block text-left text-sm font-medium text-gray-700">Company (Optional)</label>
+                        <input type="text" id="company" name="company" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
+                    <!-- New "Comments/Info" field -->
+                    <div>
+                        <label for="comments" class="block text-left text-sm font-medium text-gray-700">Comments / Additional Information (Optional)</label>
+                        <textarea id="comments" name="comments" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3"></textarea>
+                    </div>
 
-                <!-- Obfuscated Phone Number Section -->
-                <div class="flex flex-col items-center">
-                    <h3 class="text-xl font-bold mb-4">Call Us</h3>
-                    <!-- Image of the phone number that is not scannable by bots -->
-                    <a href="tel:9075905009">
-                        <img src="https://placehold.co/300x50/374151/E5E7EB?text=907-590-5009" 
-                             alt="Phone Number: 907-590-5009" 
-                             class="rounded-lg shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    </a>
-                </div>
-                
+                    <!-- Calendar component -->
+                    <div class="mt-8 border border-gray-200 rounded-lg p-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <button type="button" id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <h3 id="monthYear" class="text-2xl font-semibold"></h3>
+                            <button type="button" id="nextBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-7 gap-2 text-sm font-bold text-gray-500 mb-2">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div id="calendar" class="grid grid-cols-7 gap-2 text-center text-lg">
+                            <!-- Calendar days will be generated here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden inputs to store the selected date range and reCAPTCHA token -->
+                    <input type="hidden" id="startDateInput" name="startDate">
+                    <input type="hidden" id="endDateInput" name="endDate">
+                    <input type="hidden" id="recaptchaResponse" name="g-recaptcha-response">
+                    
+                    <button type="submit" id="bookBtn" class="w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        Book Selected Dates
+                    </button>
+                </form>
+            </div>
+            
+            <!-- New informational text box -->
+            <div class="mt-8 p-6 rounded-xl bg-blue-50 text-blue-800 border border-blue-200 max-w-2xl mx-auto shadow">
+                <h3 class="text-xl font-bold mb-2">Important Information</h3>
+                <p class="text-sm md:text-base">
+                    Submitting this form does not obligate you to a reservation. It simply sends us an email letting us know you are interested in these dates. We will be in touch shortly to confirm availability and finalize the details of your reservation.
+                </p>
+            </div>
+
+            <div id="confirmationMessage" class="mt-4 p-4 rounded-lg bg-green-100 text-green-800 hidden max-w-2xl mx-auto">
+                Thank you! Your reservation request has been sent. We'll be in touch shortly.
             </div>
         </div>
     </section>
@@ -106,36 +125,138 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Obfuscate and display the email address
-            const emailUser = 'seth';
-            const emailDomain = 'tundrakitchensolutions.com';
-            const fullEmail = emailUser + '@' + emailDomain;
+            const calendarEl = document.getElementById('calendar');
+            const monthYearEl = document.getElementById('monthYear');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const bookBtn = document.getElementById('bookBtn');
+            const startDateInput = document.getElementById('startDateInput');
+            const endDateInput = document.getElementById('endDateInput');
+            const clientNameInput = document.getElementById('clientName');
+            const clientEmailInput = document.getElementById('clientEmail');
+            const companyInput = document.getElementById('company');
+            const commentsInput = document.getElementById('comments');
+            const reservationForm = document.getElementById('reservationForm');
+            const recaptchaResponseInput = document.getElementById('recaptchaResponse');
 
-            const emailSpan = document.getElementById('obfuscated-email');
-            emailSpan.textContent = fullEmail;
+            let startDate = null;
+            let endDate = null;
+            let currentDate = new Date();
 
-            // Click-to-copy functionality for the email
-            const copyBtn = document.getElementById('copy-email-btn');
-            const copiedMessage = document.getElementById('copied-message');
+            const renderCalendar = () => {
+                const year = currentDate.getFullYear();
+                const month = currentDate.getMonth();
 
-            copyBtn.addEventListener('click', () => {
-                // Use a temporary textarea to hold the text to be copied
-                const tempInput = document.createElement('textarea');
-                tempInput.value = fullEmail;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                
-                // Copy the text to the clipboard
-                document.execCommand('copy');
-                
-                document.body.removeChild(tempInput);
-                
-                // Show the "Copied!" message
-                copiedMessage.classList.add('show');
-                setTimeout(() => {
-                    copiedMessage.classList.remove('show');
-                }, 1500); // Hide after 1.5 seconds
+                const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                monthYearEl.textContent = `${monthNames[month]} ${year}`;
+
+                calendarEl.innerHTML = '';
+
+                const firstDay = new Date(year, month, 1).getDay();
+                const lastDay = new Date(year, month + 1, 0).getDate();
+
+                for (let i = 0; i < firstDay; i++) {
+                    const emptyDiv = document.createElement('div');
+                    calendarEl.appendChild(emptyDiv);
+                }
+
+                for (let i = 1; i <= lastDay; i++) {
+                    const dayDiv = document.createElement('div');
+                    dayDiv.textContent = i;
+                    dayDiv.classList.add('p-2', 'rounded-full', 'calendar-day', 'transition-colors', 'duration-200');
+
+                    const dayDate = new Date(year, month, i);
+
+                    // Check if it's within the selected range and add a class
+                    if (startDate && endDate) {
+                        const isSelected = (dayDate >= startDate && dayDate <= endDate) || (dayDate <= startDate && dayDate >= endDate);
+                        if (isSelected) {
+                            dayDiv.classList.add('bg-blue-200');
+                        }
+                    }
+
+                    // Check if it's the start or end date and add a different class
+                    if ((startDate && dayDate.toDateString() === startDate.toDateString()) || (endDate && dayDate.toDateString() === endDate.toDateString())) {
+                        dayDiv.classList.add('selected', 'bg-blue-600', 'text-white');
+                        dayDiv.classList.remove('bg-blue-200');
+                    }
+                    
+                    // Add hover effect
+                    if (dayDiv.classList.contains('selected') || dayDiv.classList.contains('bg-blue-200')) {
+                        dayDiv.classList.add('hover:bg-blue-700');
+                    } else {
+                        dayDiv.classList.add('hover:bg-gray-200');
+                    }
+
+                    dayDiv.addEventListener('click', () => {
+                        const clickedDate = new Date(year, month, i);
+
+                        if (!startDate || (startDate && endDate)) {
+                            // If no dates are selected or a range is already selected, start a new range
+                            startDate = clickedDate;
+                            endDate = null;
+                        } else if (startDate && !endDate) {
+                            // If a start date is selected, set the end date
+                            endDate = clickedDate;
+                            // Ensure startDate is always before endDate for consistent logic
+                            if (startDate > endDate) {
+                                [startDate, endDate] = [endDate, startDate];
+                            }
+                        }
+
+                        // Update hidden inputs
+                        startDateInput.value = startDate ? startDate.toLocaleDateString() : '';
+                        endDateInput.value = endDate ? endDate.toLocaleDateString() : '';
+                        
+                        renderCalendar();
+                        checkFormValidity();
+                    });
+
+                    calendarEl.appendChild(dayDiv);
+                }
+            };
+
+            const checkFormValidity = () => {
+                const isFormComplete = clientNameInput.value.trim() !== '' && clientEmailInput.value.trim() !== '' && startDate && endDate;
+                bookBtn.disabled = !isFormComplete;
+            };
+
+            // Event listeners for navigation
+            prevBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar();
             });
+
+            nextBtn.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar();
+            });
+            
+            // Event listeners for input changes to enable/disable the button
+            clientNameInput.addEventListener('input', checkFormValidity);
+            clientEmailInput.addEventListener('input', checkFormValidity);
+            companyInput.addEventListener('input', checkFormValidity);
+            commentsInput.addEventListener('input', checkFormValidity);
+
+            // Handle form submission with reCAPTCHA
+            reservationForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission
+
+                if (!startDate || !endDate || clientNameInput.value.trim() === '' || clientEmailInput.value.trim() === '') {
+                    return; // Do not submit if required fields are empty
+                }
+
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' }).then(function(token) {
+                        recaptchaResponseInput.value = token;
+                        // Now submit the form manually
+                        reservationForm.submit();
+                    });
+                });
+            });
+
+            // Initial render
+            renderCalendar();
         });
     </script>
 </body>
