@@ -40,6 +40,7 @@
             <h2 class="text-4xl font-bold mb-8 text-gray-900">Book a Reservation</h2>
             
             <div class="bg-white p-8 rounded-xl card-shadow max-w-2xl mx-auto">
+                <!-- Formspree form with your unique URL -->
                 <form id="reservationForm" action="https://formspree.io/f/xyzplwvd" method="POST" class="space-y-6">
                     
                     <!-- Input fields for client information -->
@@ -246,7 +247,7 @@
                 }
 
                 grecaptcha.ready(function() {
-                    grecaptcha.execute(6LcjiKArAAAAAHQiHHuECHu185r6QnWN6HGlwxrs, { action: 'submit' }).then(function(token) {
+                    grecaptcha.execute('6LcjiKArAAAAAHQiHHuECHu185r6QnWN6HGlwxrs', { action: 'submit' }).then(function(token) {
                         recaptchaResponseInput.value = token;
                         // Now submit the form manually
                         reservationForm.submit();
