@@ -16,10 +16,10 @@
     <!-- Header & Navigation -->
     <header class="bg-white card-shadow sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Navigation links are on the right and home link is not a link -->
-            <div class="text-2xl font-bold text-gray-900">
+            <!-- Tundra Kitchen Solutions title, now a link to the homepage -->
+            <a href="index.html" class="text-2xl font-bold text-gray-900 hover:text-blue-600 transition-colors duration-300">
                 Tundra Kitchen Solutions
-            </div>
+            </a>
             <div class="hidden md:flex space-x-6">
                 <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
                 <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
@@ -34,53 +34,67 @@
     </header>
     
     <!-- Reservation Section -->
-    <section id="reservation" class="py-20 bg-white min-h-screen">
+    <section id="reservation" class="py-20 bg-gray-50 min-h-screen">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8">Book a Reservation</h2>
-            <form action="https://formspree.io/f/xyzplwvd" method="POST" class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg card-shadow">
-                
-                <!-- New input fields for client information -->
-                <div class="mb-4">
-                    <label for="clientName" class="block text-left text-sm font-medium text-gray-700">Full Name</label>
-                    <input type="text" id="clientName" name="clientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
-                </div>
-                <div class="mb-4">
-                    <label for="clientEmail" class="block text-left text-sm font-medium text-gray-700">Email Address</label>
-                    <input type="email" id="clientEmail" name="clientEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
-                </div>
+            <h2 class="text-4xl font-bold mb-8 text-gray-900">Book a Reservation</h2>
+            
+            <div class="bg-white p-8 rounded-xl card-shadow max-w-2xl mx-auto">
+                <form action="https://formspree.io/f/xyzplwvd" method="POST" class="space-y-6">
+                    
+                    <!-- Input fields for client information -->
+                    <div>
+                        <label for="clientName" class="block text-left text-sm font-medium text-gray-700">Full Name</label>
+                        <input type="text" id="clientName" name="clientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
+                    <div>
+                        <label for="clientEmail" class="block text-left text-sm font-medium text-gray-700">Email Address</label>
+                        <input type="email" id="clientEmail" name="clientEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
 
-                <!-- Calendar component -->
-                <div class="flex justify-between items-center mb-6">
-                    <button type="button" id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    <!-- Calendar component -->
+                    <div class="mt-8 border border-gray-200 rounded-lg p-4">
+                        <div class="flex justify-between items-center mb-4">
+                            <button type="button" id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <h3 id="monthYear" class="text-2xl font-semibold"></h3>
+                            <button type="button" id="nextBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200 transition-colors duration-200">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+                        </div>
+                        <div class="grid grid-cols-7 gap-2 text-sm font-bold text-gray-500 mb-2">
+                            <div>Sun</div>
+                            <div>Mon</div>
+                            <div>Tue</div>
+                            <div>Wed</div>
+                            <div>Thu</div>
+                            <div>Fri</div>
+                            <div>Sat</div>
+                        </div>
+                        <div id="calendar" class="grid grid-cols-7 gap-2 text-center text-lg">
+                            <!-- Calendar days will be generated here by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <!-- Hidden inputs to store the selected date range -->
+                    <input type="hidden" id="startDateInput" name="startDate">
+                    <input type="hidden" id="endDateInput" name="endDate">
+                    
+                    <button type="submit" id="bookBtn" class="w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                        Book Selected Dates
                     </button>
-                    <h3 id="monthYear" class="text-2xl font-semibold"></h3>
-                    <button type="button" id="nextBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                    </button>
-                </div>
-                <div class="grid grid-cols-7 gap-2 text-sm font-bold text-gray-500 mb-2">
-                    <div>Sun</div>
-                    <div>Mon</div>
-                    <div>Tue</div>
-                    <div>Wed</div>
-                    <div>Thu</div>
-                    <div>Fri</div>
-                    <div>Sat</div>
-                </div>
-                <div id="calendar" class="grid grid-cols-7 gap-2 text-center text-lg">
-                    <!-- Calendar days will be generated here by JavaScript -->
-                </div>
-                
-                <!-- Hidden inputs to store the selected date range -->
-                <input type="hidden" id="startDateInput" name="startDate">
-                <input type="hidden" id="endDateInput" name="endDate">
-                
-                <button type="submit" id="bookBtn" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400" disabled>
-                    Book Selected Dates
-                </button>
-            </form>
-            <div id="confirmationMessage" class="mt-4 p-4 rounded-lg bg-green-100 text-green-800 hidden">
+                </form>
+            </div>
+            
+            <!-- New informational text box -->
+            <div class="mt-8 p-6 rounded-xl bg-blue-50 text-blue-800 border border-blue-200 max-w-2xl mx-auto shadow">
+                <h3 class="text-xl font-bold mb-2">Important Information</h3>
+                <p class="text-sm md:text-base">
+                    Submitting this form does not obligate you to a reservation. It simply sends us an email letting us know you are interested in these dates. We will be in touch shortly to confirm availability and finalize the details of your reservation.
+                </p>
+            </div>
+
+            <div id="confirmationMessage" class="mt-4 p-4 rounded-lg bg-green-100 text-green-800 hidden max-w-2xl mx-auto">
                 Thank you! Your reservation request has been sent. We'll be in touch shortly.
             </div>
         </div>
@@ -133,7 +147,7 @@
                 for (let i = 1; i <= lastDay; i++) {
                     const dayDiv = document.createElement('div');
                     dayDiv.textContent = i;
-                    dayDiv.classList.add('p-2', 'rounded-full', 'calendar-day');
+                    dayDiv.classList.add('p-2', 'rounded-full', 'calendar-day', 'transition-colors', 'duration-200');
 
                     const dayDate = new Date(year, month, i);
 
@@ -147,8 +161,15 @@
 
                     // Check if it's the start or end date and add a different class
                     if ((startDate && dayDate.toDateString() === startDate.toDateString()) || (endDate && dayDate.toDateString() === endDate.toDateString())) {
-                        dayDiv.classList.add('selected');
+                        dayDiv.classList.add('selected', 'bg-blue-600', 'text-white');
                         dayDiv.classList.remove('bg-blue-200');
+                    }
+                    
+                    // Add hover effect
+                    if (dayDiv.classList.contains('selected') || dayDiv.classList.contains('bg-blue-200')) {
+                        dayDiv.classList.add('hover:bg-blue-700');
+                    } else {
+                        dayDiv.classList.add('hover:bg-gray-200');
                     }
 
                     dayDiv.addEventListener('click', () => {
