@@ -6,10 +6,10 @@
     <title>Tundra Kitchen Solutions - Availability</title>
     <!-- Tailwind CSS CDN for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Link to the external stylesheet -->
-    <link rel="stylesheet" href="styles.css">
     <!-- Font Awesome for the calendar icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google reCAPTCHA v3 script -->
+    <script src="https://www.google.com/recaptcha/api.js?render=YOUR_RECAPTCHA_SITE_KEY"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
@@ -23,6 +23,7 @@
             <div class="hidden md:flex space-x-6">
                 <a href="index.html#features" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Features</a>
                 <a href="index.html#gallery" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Gallery</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a>
             </div>
             <!-- Mobile Menu Button -->
             <button class="md:hidden text-gray-600 focus:outline-none">
@@ -36,10 +37,10 @@
     <!-- Reservation Section -->
     <section id="reservation" class="py-20 bg-gray-50 min-h-screen">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8 text-gray-900">Request a Reservation</h2>
+            <h2 class="text-4xl font-bold mb-8 text-gray-900">Book a Reservation</h2>
             
             <div class="bg-white p-8 rounded-xl card-shadow max-w-2xl mx-auto">
-                <form action="https://formspree.io/f/xyzplwvd" method="POST" class="space-y-6">
+                <form id="reservationForm" action="https://formspree.io/f/xyzplwvd" method="POST" class="space-y-6">
                     
                     <!-- Input fields for client information -->
                     <div>
@@ -49,6 +50,16 @@
                     <div>
                         <label for="clientEmail" class="block text-left text-sm font-medium text-gray-700">Email Address</label>
                         <input type="email" id="clientEmail" name="clientEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
+                    <!-- New "Company" field -->
+                    <div>
+                        <label for="company" class="block text-left text-sm font-medium text-gray-700">Company (Optional)</label>
+                        <input type="text" id="company" name="company" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3">
+                    </div>
+                    <!-- New "Comments/Info" field -->
+                    <div>
+                        <label for="comments" class="block text-left text-sm font-medium text-gray-700">Comments / Additional Information (Optional)</label>
+                        <textarea id="comments" name="comments" rows="4" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-3"></textarea>
                     </div>
 
                     <!-- Calendar component -->
@@ -76,12 +87,13 @@
                         </div>
                     </div>
                     
-                    <!-- Hidden inputs to store the selected date range -->
+                    <!-- Hidden inputs to store the selected date range and reCAPTCHA token -->
                     <input type="hidden" id="startDateInput" name="startDate">
                     <input type="hidden" id="endDateInput" name="endDate">
+                    <input type="hidden" id="recaptchaResponse" name="g-recaptcha-response">
                     
                     <button type="submit" id="bookBtn" class="w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed">
-                        Request Selected Dates
+                        Book Selected Dates
                     </button>
                 </form>
             </div>
@@ -121,6 +133,10 @@
             const endDateInput = document.getElementById('endDateInput');
             const clientNameInput = document.getElementById('clientName');
             const clientEmailInput = document.getElementById('clientEmail');
+            const companyInput = document.getElementById('company');
+            const commentsInput = document.getElementById('comments');
+            const reservationForm = document.getElementById('reservationForm');
+            const recaptchaResponseInput = document.getElementById('recaptchaResponse');
 
             let startDate = null;
             let endDate = null;
@@ -218,14 +234,24 @@
             // Event listeners for input changes to enable/disable the button
             clientNameInput.addEventListener('input', checkFormValidity);
             clientEmailInput.addEventListener('input', checkFormValidity);
+            companyInput.addEventListener('input', checkFormValidity);
+            commentsInput.addEventListener('input', checkFormValidity);
 
-            // Handle form submission
-            document.querySelector('form').addEventListener('submit', (e) => {
+            // Handle form submission with reCAPTCHA
+            reservationForm.addEventListener('submit', (e) => {
+                e.preventDefault(); // Prevent default form submission
+
                 if (!startDate || !endDate || clientNameInput.value.trim() === '' || clientEmailInput.value.trim() === '') {
-                    e.preventDefault(); // Prevent form submission if not complete
-                } else {
-                    document.getElementById('confirmationMessage').classList.remove('hidden');
+                    return; // Do not submit if required fields are empty
                 }
+
+                grecaptcha.ready(function() {
+                    grecaptcha.execute('YOUR_RECAPTCHA_SITE_KEY', { action: 'submit' }).then(function(token) {
+                        recaptchaResponseInput.value = token;
+                        // Now submit the form manually
+                        reservationForm.submit();
+                    });
+                });
             });
 
             // Initial render
