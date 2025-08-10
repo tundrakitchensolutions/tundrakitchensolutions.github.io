@@ -16,7 +16,7 @@
     <!-- Header & Navigation -->
     <header class="bg-white card-shadow sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Removed the href to make it not a link -->
+            <!-- Navigation links are on the right and home link is not a link -->
             <div class="text-2xl font-bold text-gray-900">
                 Tundra Kitchen Solutions
             </div>
@@ -37,13 +37,13 @@
     <section id="reservation" class="py-20 bg-white min-h-screen">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-4xl font-bold mb-8">Book a Reservation</h2>
-            <div class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg card-shadow">
+            <form action="https://formspree.io/f/your_unique_id" method="POST" class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg card-shadow">
                 <div class="flex justify-between items-center mb-6">
-                    <button id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
+                    <button type="button" id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                     </button>
                     <h3 id="monthYear" class="text-2xl font-semibold"></h3>
-                    <button id="nextBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
+                    <button type="button" id="nextBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                     </button>
                 </div>
@@ -59,12 +59,13 @@
                 <div id="calendar" class="grid grid-cols-7 gap-2 text-center text-lg">
                     <!-- Calendar days will be generated here by JavaScript -->
                 </div>
-                <button id="bookBtn" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400" disabled>
+                <input type="hidden" id="selectedDateInput" name="reservationDate">
+                <button type="submit" id="bookBtn" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400" disabled>
                     Book Selected Date
                 </button>
-            </div>
+            </form>
             <div id="confirmationMessage" class="mt-4 p-4 rounded-lg bg-green-100 text-green-800 hidden">
-                <!-- Confirmation message will appear here -->
+                Thank you! Your reservation request has been sent. We'll be in touch shortly.
             </div>
         </div>
     </section>
@@ -87,7 +88,7 @@
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const bookBtn = document.getElementById('bookBtn');
-            const confirmationMessageEl = document.getElementById('confirmationMessage');
+            const selectedDateInput = document.getElementById('selectedDateInput');
 
             let selectedDate = null;
             let currentDate = new Date();
@@ -127,18 +128,17 @@
                     // Add click event listener to each day
                     dayDiv.addEventListener('click', () => {
                         // Remove selected class from previously selected day
-                        if (selectedDate) {
-                            const previousSelected = calendarEl.querySelector('.selected');
-                            if (previousSelected) {
-                                previousSelected.classList.remove('selected');
-                            }
+                        const previousSelected = calendarEl.querySelector('.selected');
+                        if (previousSelected) {
+                            previousSelected.classList.remove('selected');
                         }
 
                         // Add selected class to the new day
                         dayDiv.classList.add('selected');
                         selectedDate = new Date(year, month, i);
+                        selectedDateInput.value = selectedDate.toLocaleDateString();
                         bookBtn.disabled = false;
-                        confirmationMessageEl.classList.add('hidden'); // Hide any previous confirmation message
+                        document.getElementById('confirmationMessage').classList.add('hidden'); // Hide any previous confirmation message
                     });
 
                     calendarEl.appendChild(dayDiv);
@@ -156,13 +156,13 @@
                 renderCalendar();
             });
 
-            // Event listener for the book button
-            bookBtn.addEventListener('click', () => {
-                if (selectedDate) {
-                    const formattedDate = selectedDate.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-                    confirmationMessageEl.textContent = `Thank you! Your request for ${formattedDate} has been sent. We'll be in touch shortly.`;
-                    confirmationMessageEl.classList.remove('hidden');
-                    bookBtn.disabled = true; // Disable the button after booking
+            // Handle form submission
+            document.querySelector('form').addEventListener('submit', (e) => {
+                if (!selectedDate) {
+                    e.preventDefault(); // Prevent form submission if no date is selected
+                } else {
+                    // Show confirmation message
+                    document.getElementById('confirmationMessage').classList.remove('hidden');
                 }
             });
 
