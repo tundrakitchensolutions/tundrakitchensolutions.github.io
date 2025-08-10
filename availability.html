@@ -36,8 +36,20 @@
     <!-- Reservation Section -->
     <section id="reservation" class="py-20 bg-white min-h-screen">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-8">Request a Reservation</h2>
+            <h2 class="text-4xl font-bold mb-8">Book a Reservation</h2>
             <form action="https://formspree.io/f/xyzplwvd" method="POST" class="max-w-xl mx-auto bg-gray-50 p-8 rounded-lg card-shadow">
+                
+                <!-- New input fields for client information -->
+                <div class="mb-4">
+                    <label for="clientName" class="block text-left text-sm font-medium text-gray-700">Full Name</label>
+                    <input type="text" id="clientName" name="clientName" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+                <div class="mb-4">
+                    <label for="clientEmail" class="block text-left text-sm font-medium text-gray-700">Email Address</label>
+                    <input type="email" id="clientEmail" name="clientEmail" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                </div>
+
+                <!-- Calendar component -->
                 <div class="flex justify-between items-center mb-6">
                     <button type="button" id="prevBtn" class="p-2 rounded-full text-gray-600 hover:bg-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
@@ -59,9 +71,13 @@
                 <div id="calendar" class="grid grid-cols-7 gap-2 text-center text-lg">
                     <!-- Calendar days will be generated here by JavaScript -->
                 </div>
-                <input type="hidden" id="selectedDateInput" name="reservationDate">
+                
+                <!-- Hidden inputs to store the selected date range -->
+                <input type="hidden" id="startDateInput" name="startDate">
+                <input type="hidden" id="endDateInput" name="endDate">
+                
                 <button type="submit" id="bookBtn" class="mt-8 w-full bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-colors duration-300 transform hover:scale-105 disabled:bg-gray-400" disabled>
-                    Request Selected Dates
+                    Book Selected Dates
                 </button>
             </form>
             <div id="confirmationMessage" class="mt-4 p-4 rounded-lg bg-green-100 text-green-800 hidden">
@@ -88,61 +104,84 @@
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const bookBtn = document.getElementById('bookBtn');
-            const selectedDateInput = document.getElementById('selectedDateInput');
+            const startDateInput = document.getElementById('startDateInput');
+            const endDateInput = document.getElementById('endDateInput');
+            const clientNameInput = document.getElementById('clientName');
+            const clientEmailInput = document.getElementById('clientEmail');
 
-            let selectedDate = null;
+            let startDate = null;
+            let endDate = null;
             let currentDate = new Date();
 
             const renderCalendar = () => {
                 const year = currentDate.getFullYear();
                 const month = currentDate.getMonth();
 
-                // Set month and year title
                 const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
                 monthYearEl.textContent = `${monthNames[month]} ${year}`;
 
-                // Clear previous calendar
                 calendarEl.innerHTML = '';
 
-                // Get first and last day of the month
                 const firstDay = new Date(year, month, 1).getDay();
                 const lastDay = new Date(year, month + 1, 0).getDate();
 
-                // Add empty days for alignment
                 for (let i = 0; i < firstDay; i++) {
                     const emptyDiv = document.createElement('div');
                     calendarEl.appendChild(emptyDiv);
                 }
 
-                // Add days of the month
                 for (let i = 1; i <= lastDay; i++) {
                     const dayDiv = document.createElement('div');
                     dayDiv.textContent = i;
                     dayDiv.classList.add('p-2', 'rounded-full', 'calendar-day');
 
-                    // Check if it's the selected date and add a class
-                    if (selectedDate && i === selectedDate.getDate() && month === selectedDate.getMonth() && year === selectedDate.getFullYear()) {
-                        dayDiv.classList.add('selected');
+                    const dayDate = new Date(year, month, i);
+
+                    // Check if it's within the selected range and add a class
+                    if (startDate && endDate) {
+                        const isSelected = (dayDate >= startDate && dayDate <= endDate) || (dayDate <= startDate && dayDate >= endDate);
+                        if (isSelected) {
+                            dayDiv.classList.add('bg-blue-200');
+                        }
                     }
 
-                    // Add click event listener to each day
+                    // Check if it's the start or end date and add a different class
+                    if ((startDate && dayDate.toDateString() === startDate.toDateString()) || (endDate && dayDate.toDateString() === endDate.toDateString())) {
+                        dayDiv.classList.add('selected');
+                        dayDiv.classList.remove('bg-blue-200');
+                    }
+
                     dayDiv.addEventListener('click', () => {
-                        // Remove selected class from previously selected day
-                        const previousSelected = calendarEl.querySelector('.selected');
-                        if (previousSelected) {
-                            previousSelected.classList.remove('selected');
+                        const clickedDate = new Date(year, month, i);
+
+                        if (!startDate || (startDate && endDate)) {
+                            // If no dates are selected or a range is already selected, start a new range
+                            startDate = clickedDate;
+                            endDate = null;
+                        } else if (startDate && !endDate) {
+                            // If a start date is selected, set the end date
+                            endDate = clickedDate;
+                            // Ensure startDate is always before endDate for consistent logic
+                            if (startDate > endDate) {
+                                [startDate, endDate] = [endDate, startDate];
+                            }
                         }
 
-                        // Add selected class to the new day
-                        dayDiv.classList.add('selected');
-                        selectedDate = new Date(year, month, i);
-                        selectedDateInput.value = selectedDate.toLocaleDateString();
-                        bookBtn.disabled = false;
-                        document.getElementById('confirmationMessage').classList.add('hidden'); // Hide any previous confirmation message
+                        // Update hidden inputs
+                        startDateInput.value = startDate ? startDate.toLocaleDateString() : '';
+                        endDateInput.value = endDate ? endDate.toLocaleDateString() : '';
+                        
+                        renderCalendar();
+                        checkFormValidity();
                     });
 
                     calendarEl.appendChild(dayDiv);
                 }
+            };
+
+            const checkFormValidity = () => {
+                const isFormComplete = clientNameInput.value.trim() !== '' && clientEmailInput.value.trim() !== '' && startDate && endDate;
+                bookBtn.disabled = !isFormComplete;
             };
 
             // Event listeners for navigation
@@ -155,13 +194,16 @@
                 currentDate.setMonth(currentDate.getMonth() + 1);
                 renderCalendar();
             });
+            
+            // Event listeners for input changes to enable/disable the button
+            clientNameInput.addEventListener('input', checkFormValidity);
+            clientEmailInput.addEventListener('input', checkFormValidity);
 
             // Handle form submission
             document.querySelector('form').addEventListener('submit', (e) => {
-                if (!selectedDate) {
-                    e.preventDefault(); // Prevent form submission if no date is selected
+                if (!startDate || !endDate || clientNameInput.value.trim() === '' || clientEmailInput.value.trim() === '') {
+                    e.preventDefault(); // Prevent form submission if not complete
                 } else {
-                    // Show confirmation message
                     document.getElementById('confirmationMessage').classList.remove('hidden');
                 }
             });
